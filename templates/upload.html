@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Image Processing</h1>
+        <br/><br/>
+        <div class="card" style="width: 28rem;">
+            <img src="{{image}}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Source Image</h5>
+            </div>
+        </div>
+        <p class="mt-4 mb-3">
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseGrayScale" role="button"
+               aria-expanded="false" aria-controls="collapseGrayScale">
+                Detect The Face
+            </a>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseBlurImage"
+                    aria-expanded="false" aria-controls="collapseBlurImage">
+                Get Blur Image
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCannyImage"
+                    aria-expanded="false" aria-controls="collapseCannyImage">
+                Get Canny Image
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDilateImage"
+                    aria-expanded="false" aria-controls="collapseDilateImage">
+                Get Dilation Image
+            </button>
+
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseErodeImage"
+                    aria-expanded="false" aria-controls="collapseErodeImage">
+                Get Erode Image
+            </button>
+        </p>
+        <div class="row">
+            <div class="col">
+                <div class="collapse CollapseAllImage" id="collapseGrayScale">
+                    <div class="card" style="width: 28rem;">
+                        <img src="/static/images/face_{{image_name}}"
+                             class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Face Detected in the Image</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+{% endblock %}
