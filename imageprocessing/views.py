@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Image
+from .models import *
+from .forms import *
 import cv2
 import numpy
 import os
@@ -19,17 +20,28 @@ def contact(request):
 
 
 def face_detection(request):
-    return render(request, 'face-detection.html')
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('detect_face')
+    else:
+        form = ImageForm()
+    return render(request, 'face_detection.html', {'form': form})
 
 
 def process_image(request):
-    return render(request, 'process_image.html')
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('upload')
+    else:
+        form = ImageForm()
+    return render(request, 'process_image.html', {'form': form})
 
 
 def upload(request):
-    uploaded_file = request.FILES['document']
-    img = Image(image=uploaded_file)
-    img.save()
     users = Image.objects.all()
     img = users[len(users) - 1].image
     cur_img = cv2.imread(img.path, 1)
@@ -50,9 +62,6 @@ def upload(request):
 
 
 def detect_face(request):
-    uploaded_file = request.FILES['document']
-    img = Image(image=uploaded_file)
-    img.save()
     users = Image.objects.all()
     img = users[len(users) - 1].image
     cur_img = cv2.imread(img.path, 1)
