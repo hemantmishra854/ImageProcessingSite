@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Feature Matching</h1>
+        <br/><br/>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <img src="{{image}}" class="card-img-top" style="width:300px;height:300px">
+                    <div class="card-body">
+                        <h5 class="card-title">Source Image</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" name="angle" placeholder="Enter rotation angle" class="form-control" required>
+                    <br>
+                    <input type="submit" value="Rotate Source Image" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <img src="/static/images/rot_{{image_name}}" class="card-img-top" style="width:300px;height:300px">
+                    <div class="card-body">
+                        <h5 class="card-title">Rotated Image</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 mb-3">
+            <div class="col text-center">
+                <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseMathedImage" role="button"
+                       aria-expanded="false" aria-controls="collapseMathedImage">
+                        Perform Pattern Matching
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="row row mt-4 mb-3">
+            <div class="col">
+                <div class="collapse CollapseAllImage" id="collapseMathedImage">
+                    <div class="card text-center">
+                        <img src="/static/images/matched_{{image_name}}"
+                             class="mx-auto d-block" style="width:600px;height:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">Patterns Matched</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

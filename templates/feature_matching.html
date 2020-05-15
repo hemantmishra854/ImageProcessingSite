@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Feature Matching</h1>
+        <p class="lead">Upload the image to perform feature matching.</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="input-group mb-3">
+                {{ form|crispy }}
+        </div>
+        <div class="input-group mb-3">
+                <input type="submit" value="Upload Image" class="btn btn-primary">
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
