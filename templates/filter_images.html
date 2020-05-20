@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Image Filtering</h1>
+        <br/><br/>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <img src="{{image}}" class="card-img-top" style="width:300px;height:300px">
+                    <div class="card-body">
+                        <h5 class="card-title">Source Image</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <p class="mt-4 mb-3">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseBilateral" role="button"
+                       aria-expanded="false" aria-controls="collapseBilateral">
+                        Bilateral Filter
+                    </a>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#collapseMedian"
+                            aria-expanded="false" aria-controls="collapseMedian">
+                        Median Filter
+                    </button>
+                    <button class="btn btn-primary mt-2 mt-sm-0" type="button" data-toggle="collapse"
+                            data-target="#collapseFilter2D"
+                            aria-expanded="false" aria-controls="collapseFilter2D">
+                        Filter2D
+                    </button>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mt-1">
+                <div class="collapse CollapseAllImage" id="collapseBilateral">
+                    <div class="card">
+                        <img src="/static/images/bilateral_{{image_name}}"
+                             class="card-img-top" style="width:300px;height:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">Bilateral Filter</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mt-1">
+                <div class="collapse CollapseAllImage" id="collapseMedian">
+                    <div class="card">
+                        <img src="/static/images/median_{{image_name}}"
+                             class="card-img-top" style="width:300px;height:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">Median Filter</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mt-1">
+                <div class="collapse CollapseAllImage" id="collapseFilter2D">
+                    <div class="card">
+                        <img src="/static/images/2d_{{image_name}}"
+                             class="card-img-top" style="width:300px;height:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">2D Filter</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+{% endblock %}

@@ -5,46 +5,35 @@
     <div class="container">
         <h1 class="display-4">Face Detection</h1>
         <br/><br/>
-        <div class="card" style="width: 28rem;">
-            <img src="{{image}}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">Source Image</h5>
+        <div class="row">
+
+        <div class="col-12 col-md-6">
+            <div class="card" style="width: 28rem;">
+                <img src="{{image}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Source Image</h5>
+                </div>
             </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="collapse CollapseAllImage" id="collapseFaceDetection">
+                <div class="card" style="width: 28rem;">
+                    <img src="/static/images/face_{{image_name}}"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Face Detected in the Image</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
         <p class="mt-4 mb-3">
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseFaceDetection" role="button"
                aria-expanded="false" aria-controls="collapseFaceDetection">
                 Detect Face
             </a>
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEyeDetection"
-                    aria-expanded="false" aria-controls="collapseEyeDetection">
-                Detect Eyes
-            </button>
         </p>
-        <div class="row">
-            <div class="col">
-                <div class="collapse CollapseAllImage" id="collapseFaceDetection">
-                    <div class="card" style="width: 28rem;">
-                        <img src="/static/images/face_{{image_name}}"
-                             class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Face Detected in the Image</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="collapse CollapseAllImage" id="collapseEyeDetection">
-                    <div class="card" style="width: 28rem;">
-                        <img src="/static/images/eyes_{{image_name}}"
-                             class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Eyes Detected in the Image</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>

@@ -23,7 +23,7 @@
                     <input type="submit" value="Rotate Source Image" class="btn btn-primary">
                 </form>
             </div>
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 mt-2 mt-md-0">
                 <div class="card">
                     <img src="/static/images/rot_{{image_name}}" class="card-img-top" style="width:300px;height:300px">
                     <div class="card-body">
@@ -35,21 +35,41 @@
         <div class="row mt-4 mb-3">
             <div class="col text-center">
                 <p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseMathedImage" role="button"
-                       aria-expanded="false" aria-controls="collapseMathedImage">
-                        Perform Pattern Matching
+                    <a class="btn btn-primary mt-2 mt-md-0 mr-sm-5" data-toggle="collapse" href="#siftMatchedImage" role="button"
+                       aria-expanded="false" aria-controls="siftMatchedImage">
+                        Match Patterns Using SIFT
+                    </a>
+
+                    <a class="btn btn-primary mt-2 mt-md-0" data-toggle="collapse" href="#orbMatchedImage" role="button"
+                       aria-expanded="false" aria-controls="orbMatchedImage">
+                      Match Patterns Using ORB
+                    </a>
                     </a>
                 </p>
             </div>
         </div>
         <div class="row row mt-4 mb-3">
             <div class="col">
-                <div class="collapse CollapseAllImage" id="collapseMathedImage">
+                <div class="collapse CollapseAllImage" id="siftMatchedImage">
                     <div class="card text-center">
-                        <img src="/static/images/matched_{{image_name}}"
+                        <img src="/static/images/sift_{{image_name}}"
                              class="mx-auto d-block" style="width:600px;height:300px">
                         <div class="card-body">
-                            <h5 class="card-title">Patterns Matched</h5>
+                            <h5 class="card-title">Brute Force Matching Using SIFT Detector</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row mt-4 mb-3">
+            <div class="col">
+                <div class="collapse CollapseAllImage" id="orbMatchedImage">
+                    <div class="card text-center">
+                        <img src="/static/images/orb_{{image_name}}"
+                             class="mx-auto d-block" style="width:600px;height:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">Brute Force Matching Using ORB Detector</h5>
                         </div>
                     </div>
                 </div>

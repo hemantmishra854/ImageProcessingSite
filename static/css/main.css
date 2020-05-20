@@ -2,7 +2,17 @@ body {
 margin: 0;
 padding: 0;
 }
+.bg-dark{
+background-color: #04204e !important;
+}
+.navbar-dark .navbar-nav .nav-link{
+font-weight: 700;
+font-size: 16px;
+}
 
+.navbar-dark .navbar-nav .nav-item{
+margin: 0 15px;
+}
 .navbar-brand {
 font-family: 'Baloo Chettan', cursive;
 font-size: 30px;
@@ -131,7 +141,7 @@ width: 100%;
 height: auto;
 padding-bottom: 50px;
 color: white;
-background: linear-gradient(90deg, #2C3E50, #5D6D7E);
+background: linear-gradient(90deg, #04204e, #04804e);
 background-size: 400%;
 }
 #slantedDiv3:after {

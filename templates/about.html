@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="alert alert-primary">This is my page</h1>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 m-auto text-justify">
+                <h2 class="text-info" style="text-decoration: underline">About Us</h2>
+                <p class="paragraph">
+                    Automated Pattern Matching System is a web application that will facilitate the users to
+                    automatically perform the pattern matching operation on the images and compare the images using the
+                    computer vision technology implemented through OpenCV. The project is completely suitable for the
+                    implementation of the OpenCV library in the web application. In this application the users will be
+                    able to upload the images and then after they can perform pattern matching operation on the images
+                    automatically.
+
+                </p>
+                <p class="paragraph">
+                    The overall system is designed to make the pattern matching tasks automated like the matching of the
+                    source image with the images that are obtained by rotating the images in different angles and
+                    scales. The system will display the matched image after performing the pattern matching on the
+                    images to the user. The Users will also have the facility to compare two images and the system will
+                    compare those two images and finally it will display the difference of these images.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

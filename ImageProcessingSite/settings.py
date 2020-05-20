@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'imageprocessing',
     'file_upload',
     'crispy_forms',
+    'contacts',
 
 ]
 
@@ -134,3 +135,11 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'amps.info.7080@gmail.com'
+EMAIL_HOST_PASSWORD = 'apms@7080'
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+

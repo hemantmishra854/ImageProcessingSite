@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,42 +12,41 @@
     <title>Title</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">ImageProcessing</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand text-center" href="#">Automated Pattern Matching System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
+                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Services
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/process_image">Process Image</a>
-                    <a class="dropdown-item" href="/face_detection">Face Detection</a>
-                    <a class="dropdown-item" href="/feature_matching">Feature Matching</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/compare_images">Compare Images</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Services
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/process_image">Process Image</a>
+                        <a class="dropdown-item" href="/face_detection">Face Detection</a>
+                        <a class="dropdown-item" href="/feature_matching">Feature Matching</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/compare_images">Compare Images</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contacts">Contact</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 {% block content %}
@@ -55,51 +55,31 @@
 <div id="slantedDiv3" class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
-            <h1 class="logo">Image Processing System</h1>
-            <h5 class="mt-5">Follow Us</h5>
-            <a href="#">
-                <i class="fab fa-facebook-square fa-2x"></i>
-            </a>
-            <a href="#">
-                <i class="fab fa-twitter-square fa-2x"></i>
-            </a>
-            <a href="#">
-                <i class="fab fa-instagram fa-2x"></i>
-            </a>
-            <a href="#">
-                <span style="">
-
-                    <i class="fab fa-linkedin fa-2x"></i>
-                </span>
-            </a>
-
+            <h1 class="logo">Automated Pattern Matching System</h1>
         </div>
 
         <div class="col-12 col-sm-6  col-md-3 mt-3 mt-md-0">
             <ul class="navbar-nav">
                 <li>
-                    <h5  class="font-weight-bold">Quick Links</h5>
+                    <h5 class="font-weight-bold">Quick Links</h5>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/about">About Us</a></li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Privacy Policy</a>
+                    <a class="nav-link text-white" href="/privacy">Privacy Policy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Terms & Conditions</a>
+                    <a class="nav-link text-white" href="/terms_and_conditions">Terms & Conditions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/contact">Contact us</a>
+                    <a class="nav-link text-white" href="/contacts">Contact us</a>
                 </li>
             </ul>
         </div>
         <div class="col-12 col-sm-6  col-md-3  mt-3 mt-md-0">
             <ul class="navbar-nav">
                 <li>
-                    <h5  class="font-weight-bold">Services</h5>
+                    <h5 class="font-weight-bold">Services</h5>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/process_image">Process Image</a></li>
@@ -107,13 +87,10 @@
                     <a class="nav-link text-white" href="/face_detection">Face Detection</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Color Detection</a>
+                    <a class="nav-link text-white" href="/feature_matching">Feature Matching</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Number Plate Detection</a>
-                </li>
-                <li class="nav-item">
-                    <a class="#">Report Problem</a>
+                    <a class="nav-link text-white" href="/compare_images">Compare Images</a>
                 </li>
             </ul>
 
@@ -124,15 +101,9 @@
                     <h5 class="font-weight-bold">More Services</h5>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Object Tracking</a></li>
+                    <a class="nav-link text-white" href="/image_filter">Image Filters</a></li>
                 <li class="nav-item">
-                    <a class="nav-link text-white">Detect Corners</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white">Circle Detection</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white">Road Lane Line Detection</a>
+                    <a class="nav-link text-white">Image Blending</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white">Template Matching</a>

@@ -29,24 +29,42 @@
         <div class="row mt-4 mb-3">
             <div class="col text-center">
                 <p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseMatchedImage" role="button"
+                    <a class="btn btn-primary mt-2 mt-md-0 mr-5" data-toggle="collapse" href="#collapseDifferenceImage" role="button"
+                       aria-expanded="false" aria-controls="collapseDifferenceImage">
+                        Find Differences
+                    </a>
+                    <a class="btn btn-primary mt-2 mt-md-0 mr-5" data-toggle="collapse" href="#collapseMatchedImage" role="button"
                        aria-expanded="false" aria-controls="collapseMatchedImage">
-                        Compare Two Image
+                        Find Similarities
                     </a>
                 </p>
             </div>
         </div>
         <div class="row row mt-4 mb-3">
             <div class="col">
-                <div class="collapse CollapseAllImage" id="collapseMatchedImage">
+                <div class="collapse CollapseAllImage" id="collapseDifferenceImage">
                     <div class="card text-center">
                         {% for msg in messages %}
                         <h3 class="mt-2 mb-2 alert-warning">{{msg}}</h3>
                         {% endfor %}
-                        <img src="/static/images/compared_{{image_name}}"
+                        <img src="/static/images/difference_{{image_name}}"
                              class="mx-auto d-block" style="width:600px;height:300px">
                         <div class="card-body">
-                            <h5 class="card-title">Resultant Image</h5>
+                            <h5 class="card-title">Differences in the both Images</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row mt-4 mb-3">
+            <div class="col">
+                <div class="collapse CollapseAllImage" id="collapseMatchedImage">
+                    <div class="card text-center">
+                        <h3 class="mt-2 mb-2"></h3>
+                        <img src="/static/images/flann_{{image_name}}"
+                             class="mx-auto d-block" style="width:600px;height:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">Similarities in the both Images</h5>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-<h1 class="alert alert-primary">This is contact page</h1>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Contact Us</h1>
+        <p class="lead">Fill up the form to submit your query.</p>
+        <div class="row">
+            <div class="col-sm-6">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <input type="submit" value="Submit" class="btn btn-primary">
+
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

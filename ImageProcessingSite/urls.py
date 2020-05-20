@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('imageprocessing.urls')),
-    path('file_upload/', include('file_upload.urls'))
+    path('file_upload/', include('file_upload.urls')),
+    path('contacts/', include('contacts.urls')),
 
 ]
 
