@@ -182,22 +182,27 @@ def compare_src_dst(request):
     img2 = users[len(users) - 2].image
     cur_img1 = cv2.imread(img1.path, 1)
     cur_img2 = cv2.imread(img2.path, 1)
-    cur_img1 = cv2.resize(cur_img1, (400, 400))
-    cur_img2 = cv2.resize(cur_img2, (400, 400))
-    difference = cv2.subtract(cur_img1, cur_img2)
+
+    img_path = r"C:\Users\Hemant\pycharm_projects\ImageProcessingSite\static\images"
+    img_arr = img1.name.split('/')
+
     if cur_img1.shape == cur_img2.shape:
+        difference = cv2.subtract(cur_img1, cur_img2)
         b, g, r = cv2.split(difference)
+        cv2.imwrite(os.path.join(img_path, 'difference_' + img_arr[1]), difference)
         messages.append("Both the Images have same size and channels")
         if cv2.countNonZero(b) == 0 and cv2.countNonZero(g) == 0 and cv2.countNonZero(r) == 0:
             messages.append("Both the images are completely equal")
         else:
             messages.append("Both the images are not equal")
     else:
-        messages.append("Both the Images have not different size and channels")
+        cur_img1_res = cv2.resize(cur_img1, (400, 400))
+        cur_img2_res = cv2.resize(cur_img2, (400, 400))
+        difference = cv2.subtract(cur_img1_res, cur_img2_res)
+        b, g, r = cv2.split(difference)
+        cv2.imwrite(os.path.join(img_path, 'difference_' + img_arr[1]), difference)
+        messages.append("Both the Images have different size and channels")
 
-    img_path = r"C:\Users\Hemant\pycharm_projects\ImageProcessingSite\static\images"
-    img_arr = img1.name.split('/')
-    cv2.imwrite(os.path.join(img_path, 'difference_' + img_arr[1]), difference)
 
     # sift detector
     sift = cv2.xfeatures2d.SIFT_create()
@@ -213,7 +218,7 @@ def compare_src_dst(request):
     # Apply ratio test
     good = []
     for m, n in matches:
-        if m.distance < 0.75 * n.distance:
+        if m.distance < 0.6 * n.distance:
             good.append([m])
 
     # cv2.drawMatchesKnn expects list of lists as matches.
