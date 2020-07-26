@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
+import math
 from .forms import *
 import cv2
 import numpy
@@ -90,12 +91,19 @@ def detect_face(request):
 
 def feature_matching(request):
     if request.method == 'POST':
+        print('before initiating the form')
         form = ImageForm(request.POST, request.FILES)
+        print('after initiating the form')
         if form.is_valid():
+            print('before saving the form')
             form.save()
+            print('after saving the form')
             return redirect('match_feature')
+            #return redirect('success')
     else:
         form = ImageForm()
+
+    print('before redirecting the form')
     return render(request, 'feature_matching.html', {'form': form})
 
 
@@ -111,6 +119,9 @@ def match_feature(request):
     h, w = cur_img.shape[:2]
     rotation_matrix = cv2.getRotationMatrix2D((w / 2, h / 2), angle, 0.6)
     img2 = cv2.warpAffine(cur_img, rotation_matrix, (w, h))
+
+    # start of swift detector
+    e1 = cv2.getTickCount()
 
     # sift detector
     sift = cv2.xfeatures2d.SIFT_create()
@@ -128,13 +139,35 @@ def match_feature(request):
         if m.distance < 0.75 * n.distance:
             good.append([m])
 
+    no_of_good_points = len(good)
+    total_points = 0
+    if len(kp1) <= len(kp2):
+        total_points = len(kp1)
+    else:
+        total_points = len(kp2)
+
+    result = dict()
+    result['kp1_sift'] = len(kp1)
+    result['kp2_sift'] = len(kp2)
+    result['good_points_sift'] = no_of_good_points
+    result['match_percentage_sift'] = math.ceil(no_of_good_points / total_points * 100)
+
     # cv2.drawMatchesKnn expects list of lists as matches.
     matching_result_sift = cv2.drawMatchesKnn(cur_img, kp1, img2, kp2, good, None, flags=2)
+
+    # end of sift detector
+    e2 = cv2.getTickCount()
+    # time taken by sift detector
+    sift_time = (e2 - e1)/cv2.getTickFrequency()
+    result['sift_time'] = sift_time
 
     img_path = r"C:\Users\Hemant\pycharm_projects\ImageProcessingSite\static\images"
     img_arr = img.name.split('/')
 
     cv2.imwrite(os.path.join(img_path, 'sift_' + img_arr[1]), matching_result_sift)
+
+    # start of orb detector
+    e1 = cv2.getTickCount()
 
     # ORB Detector
     orb = cv2.ORB_create()
@@ -146,11 +179,30 @@ def match_feature(request):
     matches = bf.match(des1, des2)
     matches = sorted(matches, key=lambda x: x.distance)
 
+    no_of_good_points = len(matches)
+    total_points = 0
+    if len(kp1) <= len(kp2):
+        total_points = len(kp1)
+    else:
+        total_points = len(kp2)
+
+    result['kp1_orb'] = len(kp1)
+    result['kp2_orb'] = len(kp2)
+    result['good_points_orb'] = no_of_good_points
+    result['match_percentage_orb'] = math.ceil(no_of_good_points / total_points * 100)
+
     matching_result = cv2.drawMatches(cur_img, kp1, img2, kp2, matches[:50], None, flags=2)
+
+    # end of orb detector
+    e2 = cv2.getTickCount()
+    # time taken by orb detector
+    orb_time = (e2 - e1)/cv2.getTickFrequency()
+
+    result['orb_time'] = orb_time
 
     cv2.imwrite(os.path.join(img_path, 'rot_' + img_arr[1]), img2)
     cv2.imwrite(os.path.join(img_path, 'orb_' + img_arr[1]), matching_result)
-    return render(request, 'match_feature.html', {'image': img.url, 'image_name': img_arr[1]})
+    return render(request, 'match_feature.html', {'image': img.url, 'image_name': img_arr[1], 'result': result})
 
 
 def compare_images(request):
@@ -203,6 +255,8 @@ def compare_src_dst(request):
         cv2.imwrite(os.path.join(img_path, 'difference_' + img_arr[1]), difference)
         messages.append("Both the Images have different size and channels")
 
+    # start of sift detector
+    e1 = cv2.getTickCount()
 
     # sift detector
     sift = cv2.xfeatures2d.SIFT_create()
@@ -221,13 +275,32 @@ def compare_src_dst(request):
         if m.distance < 0.6 * n.distance:
             good.append([m])
 
+    no_of_good_points = len(good)
+    total_points = 0
+    if len(kp1) <= len(kp2):
+        total_points = len(kp1)
+    else:
+        total_points = len(kp2)
+
+    result = dict()
+    result['kp1'] = len(kp1)
+    result['kp2'] = len(kp2)
+    result['good_points'] = no_of_good_points
+    result['match_percentage'] = math.ceil(no_of_good_points / total_points * 100)
+
     # cv2.drawMatchesKnn expects list of lists as matches.
     matching_result_flann = cv2.drawMatchesKnn(cur_img1, kp1, cur_img2, kp2, good, None, flags=2)
+
+    # end of sift detector
+    e2 = cv2.getTickCount()
+    # time taken by sift detector
+    sift_time = (e2 - e1)/cv2.getTickFrequency()
+    result['sift_time'] = sift_time
 
     cv2.imwrite(os.path.join(img_path, 'flann_' + img_arr[1]), matching_result_flann)
 
     return render(request, 'compare_src_dst.html', {'image1': img1.url, 'image2': img2.url, 'messages': messages,
-                                                    'image_name': img_arr[1]})
+                                                    'image_name': img_arr[1], 'result': result})
 
 
 def image_filter(request):
@@ -258,5 +331,9 @@ def filter_images(request):
     median_filter = cv2.medianBlur(cur_img, 5)
     cv2.imwrite(os.path.join(img_path, 'median_' + img_arr[1]), median_filter)
 
-
     return render(request, 'filter_images.html', {'image': img.url, 'image_name': img_arr[1]})
+
+
+def success(request):
+    return HttpResponse('Success....')
+

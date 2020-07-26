@@ -52,7 +52,16 @@
             <div class="col">
                 <div class="collapse CollapseAllImage" id="siftMatchedImage">
                     <div class="card text-center">
-                        <img src="/static/images/sift_{{image_name}}"
+                        <h2 class="mb-2 bg-dark text-white">Result of SIFT Detector</h2>
+                       <h3 class="mt-2 mb-2">Key points in 1st Image: <b>{{result.kp1_sift}}</b></h3>
+                        <h3 class="mt-2 mb-2">Key points in 2nd Image: <b>{{result.kp2_sift}}</b></h3>
+                        <h3 class="mt-2 mb-2">Good matches in both the image: <b>{{result.good_points_sift}}
+                        </b></h3>
+                        <h3 class="mt-2 mb-2">Both the images are approx.
+                            <b>{{result.match_percentage_sift}}%</b> similar</h3>
+                        <h3 class="mt-2 mb-2">Time taken is approx. <b>{{ result.sift_time }}</b> seconds</h3>
+
+                         <img src="/static/images/sift_{{image_name}}"
                              class="mx-auto d-block" style="width:600px;height:300px">
                         <div class="card-body">
                             <h5 class="card-title">Brute Force Matching Using SIFT Detector</h5>
@@ -66,6 +75,14 @@
             <div class="col">
                 <div class="collapse CollapseAllImage" id="orbMatchedImage">
                     <div class="card text-center">
+                        <h2 class="mb-2 bg-dark text-white">Result of ORB Detector</h2>
+                        <h3 class="mt-2 mb-2">Key points in 1st Image: <b>{{result.kp1_orb}}</b></h3>
+                        <h3 class="mt-2 mb-2">Key points in 2nd Image: <b>{{result.kp2_orb}}</b></h3>
+                        <h3 class="mt-2 mb-2">Good matches in both the image: <b>{{result.good_points_orb}}</b></h3>
+                        <h3 class="mt-2 mb-2">Both the images are approx. <b>{{result.match_percentage_orb}}%</b>
+                            similar</h3>
+                        <h3 class="mt-2 mb-2">Time taken is approx. <b>{{ result.orb_time }}</b> seconds</h3>
+
                         <img src="/static/images/orb_{{image_name}}"
                              class="mx-auto d-block" style="width:600px;height:300px">
                         <div class="card-body">

@@ -45,7 +45,7 @@
                 <div class="collapse CollapseAllImage" id="collapseDifferenceImage">
                     <div class="card text-center">
                         {% for msg in messages %}
-                        <h3 class="mt-2 mb-2 alert-warning">{{msg}}</h3>
+                        <h3 class="mb-2 bg-dark text-white">{{msg}}</h3>
                         {% endfor %}
                         <img src="/static/images/difference_{{image_name}}"
                              class="mx-auto d-block" style="width:600px;height:300px">
@@ -60,7 +60,13 @@
             <div class="col">
                 <div class="collapse CollapseAllImage" id="collapseMatchedImage">
                     <div class="card text-center">
-                        <h3 class="mt-2 mb-2"></h3>
+                        <h2 class="mb-2 bg-dark text-white">Similarities found</h2>
+                        <h3 class="mt-2 mb-2">Key points in 1st Image: <b>{{result.kp1}}</b></h3>
+                        <h3 class="mt-2 mb-2">Key points in 2nd Image: <b>{{result.kp2}}</b></h3>
+                        <h3 class="mt-2 mb-2">Good matches in both the image: <b>{{result.good_points}}</b></h3>
+                        <h3 class="mt-2 mb-2">Both the images are approx. <b>{{result.match_percentage}}%</b> similar</h3>
+                        <h3 class="mt-2 mb-2">Time taken is approx.  <b>{{result.sift_time}}</b> seconds</h3>
+
                         <img src="/static/images/flann_{{image_name}}"
                              class="mx-auto d-block" style="width:600px;height:300px">
                         <div class="card-body">

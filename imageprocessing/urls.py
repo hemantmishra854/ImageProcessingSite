@@ -19,6 +19,7 @@ urlpatterns = [
     path('terms_and_conditions/', views.terms_and_conditions, name='terms_and_conditions'),
     path('image_filter/', views.image_filter, name='image_filter'),
     path('filter_images/', views.filter_images, name='filter_images'),
+    path('success/', views.success, name='success'),
 
 
 ]
